@@ -539,3 +539,24 @@ Set objFoldAttachments=nothing
 End Function
 
 
+function GetFrameworkPath()         
+   If not QCUtil.IsConnected Then
+		GetFrameworkPath = replace(environment("TestDir"),environment("TestName"),"")
+	else
+		GetFrameworkPath = Get_OS_Disk() & "Automation_Temp" & "\"
+   End If
+end function
+
+Function Get_OS_Disk() 'return "c:\"
+   Set fso = CreateObject("Scripting.FileSystemObject")
+   Dim str 
+	str =fso.GetSpecialFolder(0)
+	str = left(str,3)
+	Get_OS_Disk = str
+	Set fso = nothing
+End Function
+
+Function GenerateStringOfCurrentTime()  
+	GenerateStringOfCurrentTime = DotNetFactory.CreateInstance("System.DateTime").Now.ToString("yyyyMMddHHmmss")
+End Function
+
