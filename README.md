@@ -560,3 +560,8 @@ Function GenerateStringOfCurrentTime()
 	GenerateStringOfCurrentTime = DotNetFactory.CreateInstance("System.DateTime").Now.ToString("yyyyMMddHHmmss")
 End Function
 
+Function fn_ExitExecution()
+	Call fn_EndReporting
+	'Call fn_UploadResultToALM
+	ExitTest()
+End Function
